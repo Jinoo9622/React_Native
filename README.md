@@ -1,5 +1,5 @@
 # React_Native
 
-## Intro 
+## References
 - [React Native docs](https://reactnative.dev/docs)
 - [Expo Cli](https://docs.expo.dev)
