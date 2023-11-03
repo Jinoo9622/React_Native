@@ -5,6 +5,7 @@ import StateWithFuctionalComponent from "./StateWithFuctionalComponent";
 import UseEffetWithClassComponent from "./UseEffectWithClassComponent";
 import UseEffetWithFunctionalcomponent from "./UseEffectWithFunctionalComponent";
 import { useState } from "react";
+import CustomHook from "./CustomHook";
 
 export default function App() {
   const [isTrue, setIsTrue] = useState(true);
@@ -13,11 +14,12 @@ export default function App() {
     <View style={styles.container}>
       {/* <StateWithClassComponent /> */}
       {/* <StateWithFuctionalComponent /> */}
-      {isTrue ? <UseEffetWithClassComponent /> : null}
+      {/* {isTrue ? <UseEffetWithClassComponent /> : null} */}
       {/* {isTrue && <UseEffetWithClassComponent />} */}
-      <UseEffetWithFunctionalcomponent />
+      {/* <UseEffetWithFunctionalcomponent /> */}
+      {/* <Button title="toggle" onPress={() => setIsTrue(!isTrue)} /> */}
 
-      <Button title="toggle" onPress={() => setIsTrue(!isTrue)} />
+      <CustomHook />
     </View>
   );
 }
