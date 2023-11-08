@@ -11,7 +11,7 @@ export default (props) => {
       <View style={{ justifyContent: "center", marginLeft: 10 }}>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>{props.name}</Text>
         <Margin height={6} />
-        <Text style={{ fontSize: 12, color: "gray" }}>
+        <Text style={{ fontSize: 12, color: "grey" }}>
           {props.introduction}
         </Text>
       </View>
