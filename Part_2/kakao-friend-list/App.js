@@ -13,6 +13,7 @@ import Margin from "./src/Margin";
 import Division from "./src/Division";
 import FriendSection from "./src/FriendSection";
 import FriendList from "./src/FriendList";
+import { useState } from "react";
 
 const statusBarHeight = getStatusBarHeight(true);
 const bottomSpace = getBottomSpace();
@@ -20,8 +21,10 @@ const bottomSpace = getBottomSpace();
 // console.log(`${Platform.OS}: ${statusBarHeight}, ${bottomSpace}`);
 
 export default function App() {
+  const [isOpend, setIsOpend] = useState(true);
+
   const onPressArrow = () => {
-    console.log("clicked arrow");
+    setIsOpend(!isOpend);
   };
   return (
     <View style={styles.container}>
@@ -44,9 +47,10 @@ export default function App() {
       <FriendSection
         friendProfileLen={friendProfiles.length}
         onPress={onPressArrow}
+        isOpend={isOpend}
       />
 
-      <FriendList data={friendProfiles} />
+      <FriendList data={friendProfiles} isOpend={isOpend} />
     </View>
   );
 }
