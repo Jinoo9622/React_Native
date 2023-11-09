@@ -56,10 +56,7 @@ export default (props) => {
    */
   return (
     props.isOpend && (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: bottomSpace }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         {props.data.map((item, index) => (
           // 각각의 item들은 unique한 key가 필요 (최상단 root component에 있어야함)
           <View key={index}>
