@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { FlatList, Platform, StyleSheet, Text, View } from "react-native";
 import Header from "./src/Header";
 import {
   getStatusBarHeight,
@@ -28,33 +28,63 @@ export default function App() {
   const onPressArrow = () => {
     setIsOpend(!isOpend);
   };
+
+  const ItemSeparatorComponent = () => <Margin height={13} />;
+  const renderItem = ({ item }) => (
+    <View>
+      <Profile
+        uri={item.uri}
+        name={item.name}
+        introduction={item.introduction}
+        isMyProfile={false}
+      />
+    </View>
+  );
+  const ListHeaderComponent = () => (
+    <View style={{ backgroundColor: "white" }}>
+      <Header />
+
+      <Margin height={10} />
+
+      <Profile
+        uri={myProfile.uri}
+        name={myProfile.name}
+        introduction={myProfile.introduction}
+        isMyProfile={true}
+      />
+
+      <Margin height={15} />
+
+      <Division />
+
+      <Margin height={12} />
+
+      <FriendSection
+        friendProfileLen={friendProfiles.length}
+        onPress={onPressArrow}
+        isOpend={isOpend}
+      />
+
+      <Margin height={5} />
+    </View>
+  );
+  const ListFooterComponent = () => <Margin height={10} />;
+
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1, paddingHorizontal: 15 }}>
-        <Header />
-
-        <Margin height={10} />
-
-        <Profile
-          uri={myProfile.uri}
-          name={myProfile.name}
-          introduction={myProfile.introduction}
-        />
-
-        <Margin height={15} />
-
-        <Division />
-
-        <Margin height={12} />
-
-        <FriendSection
-          friendProfileLen={friendProfiles.length}
-          onPress={onPressArrow}
-          isOpend={isOpend}
-        />
-
-        <FriendList data={friendProfiles} isOpend={isOpend} />
-      </View>
+      {/* ScrollView: 한번에 전체 랜더링 */}
+      {/* FlatList: 필요한 부분만 랜더링 */}
+      <FlatList
+        data={isOpend ? friendProfiles : []}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+        keyExtractor={(_, index) => index}
+        stickyHeaderIndices={[0]} // FlatList의 첫번째 component(ListHeaderComponent)만 고정
+        ItemSeparatorComponent={ItemSeparatorComponent}
+        renderItem={renderItem}
+        ListHeaderComponent={ListHeaderComponent}
+        ListFooterComponent={ListFooterComponent}
+        showsVerticalScrollIndicator={false}
+      />
       <TabBar
         selectedTabIdx={selectedTabIdx}
         setSelectedTabIdx={setSelectedTabIdx}
