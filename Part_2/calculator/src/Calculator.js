@@ -9,6 +9,8 @@ const COLOR = {
   OPERATOR: "#f39c29",
   NUM: "#5c5674",
 };
+
+const oneBlockWidth = 70;
 // Button type: 'reset' | 'operator' | 'num'
 const Button = ({ text, onPress, flex, type, isSelected }) => {
   const backgroundColor =
@@ -22,12 +24,12 @@ const Button = ({ text, onPress, flex, type, isSelected }) => {
   return (
     <TouchableOpacity
       style={{
-        flex,
         backgroundColor,
         justifyContent: "center",
         alignItems: "center",
         // paddingV ertical: 10,
         height: 50,
+        width: oneBlockWidth * flex,
         borderWidth: isSelected ? 1 : 0.3,
         borderColor: "black",
       }}
@@ -44,6 +46,7 @@ const ButtonContainer = styled.View`
 `;
 const InputContainer = styled.View`
   background-color: ${COLOR.RESULT};
+  width: ${oneBlockWidth * 4}px;
   min-height: 50px;
   justify-content: center;
   align-items: flex-end;
@@ -68,11 +71,16 @@ export default () => {
   return (
     // flex: 부모 component로부터 받은 비율을 나눔
     <View style={{ flex: 1, width: 250, justifyContent: "center" }}>
-      <Text>input: {input}</Text>
-      <Text>currentOperator: {currentOperator}</Text>
-      <Text>result: {result}</Text>
-      <Text>tempInput: {tempInput}</Text>
-      <Text>tempOperator: {tempOperator}</Text>
+      {/* 개발 환경에서만 노출 */}
+      {__DEV__ && (
+        <>
+          <Text>input: {input}</Text>
+          <Text>currentOperator: {currentOperator}</Text>
+          <Text>result: {result}</Text>
+          <Text>tempInput: {tempInput}</Text>
+          <Text>tempOperator: {tempOperator}</Text>
+        </>
+      )}
       {/* 결과 */}
       <InputContainer>
         <Text style={{ color: "white", fontSize: 35, textAlign: "right" }}>
