@@ -41,7 +41,7 @@ export default function App() {
     addOneMonth,
   } = useCalender(now);
   const {
-    todoList,
+    fillteredTodoList,
     input,
     setInput,
     addTodo,
@@ -173,7 +173,7 @@ export default function App() {
       >
         <FlatList
           ref={flatListRef}
-          data={todoList}
+          data={fillteredTodoList}
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingTop: statusBarHeight + 30 }}
           ListHeaderComponent={ListHeaderComponent}
