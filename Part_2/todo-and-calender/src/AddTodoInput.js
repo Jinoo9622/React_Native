@@ -4,7 +4,14 @@ import { AntDesign } from "@expo/vector-icons";
 
 import { ITEM_WIDTH, bottomSpace } from "./utils";
 
-export default ({ value, onChangeText, placeholder, onPressAdd }) => {
+export default ({
+  value,
+  onChangeText,
+  placeholder,
+  onPressAdd,
+  onSubmitEditing,
+  onFocus,
+}) => {
   return (
     <View
       style={{
@@ -24,11 +31,11 @@ export default ({ value, onChangeText, placeholder, onPressAdd }) => {
           paddingBottom: 7, // padding 적용순서 = 작성순서
           color: "#595959",
         }}
+        onSubmitEditing={onSubmitEditing}
+        blurOnSubmit={false} // submit 이후에 keyborad를 내릴지 여부
+        onFocus={onFocus}
       />
-      <TouchableOpacity
-        onPress={onPressAdd}
-        style={{ padding: 5, backgroundColor: "pink" }}
-      >
+      <TouchableOpacity onPress={onPressAdd} style={{ padding: 5 }}>
         <AntDesign name="plus" size={18} color="#595959" />
       </TouchableOpacity>
     </View>
