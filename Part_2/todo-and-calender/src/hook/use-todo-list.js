@@ -68,6 +68,7 @@ export const useTodoList = (selectedDate) => {
   });
 
   return {
+    todoList,
     fillteredTodoList,
     input,
     setInput,
